@@ -1,0 +1,6 @@
+FINALIZED_MODEL_FILE = 'finalized_model.joblib'
+PICKLES_DIR = 'pickles'
+X_TRAIN_FILE = f'{PICKLES_DIR}/X_train.pkl'
+Y_TRAIN_FILE = f'{PICKLES_DIR}/y_train.pkl'
+X_TEST_FILE = f'{PICKLES_DIR}/X_test.pkl'
+Y_TEST_FILE = f'{PICKLES_DIR}/y_test.pkl'
