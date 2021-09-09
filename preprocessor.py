@@ -31,10 +31,12 @@ class Preprocessor:
         chunk_size = 10000
         i = 1
 
-        for json_chunk in grouper(self.sessions_json,chunk_size):
+        for json_chunk in grouper(self.sessions_json, chunk_size):
             df = pd.json_normalize(json_chunk)
             if self.save_pickles:
-                df.to_pickle(f"df_{i}.pkl")
+                filename = f"df_{i}.pkl"
+                self.log(f"pickeling file {filename}")
+                df.to_pickle(filename)
                 i += 1
             dfs.append(df)
 
