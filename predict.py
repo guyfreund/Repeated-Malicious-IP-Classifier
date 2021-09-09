@@ -19,11 +19,7 @@ def log(msg):
     print(f'{str(datetime.now())} Predict: {msg}')
 
 
-def main():
-    args = args_handler()
-    path_to_json = args.path_to_json
-    save_data = args.save_data
-
+def run_predictor(path_to_json, save_data):
     preprocessor = Preprocessor(path_to_json=path_to_json, save_pickles=save_data, add_label=False)
     processed_data = preprocessor.process()
     prepare_data_for_model(processed_data)
@@ -34,6 +30,14 @@ def main():
 
     prediction = model.predict(processed_data.values).round()
     log(prediction)
+
+
+def main():
+    args = args_handler()
+    path_to_json = args.path_to_json
+    save_data = args.save_data
+
+    run_predictor(path_to_json, save_data)
 
 
 if __name__ == '__main__':
