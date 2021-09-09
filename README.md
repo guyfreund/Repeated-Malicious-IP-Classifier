@@ -22,7 +22,7 @@ and label the data such that each ip address that attacks more than once, gets a
 6. `preprocessor.py` - A class that represents a Preprocessor object (used for processing raw data).
 7. `train.py` - A Python script used to train the model from scracth (raw data to final model).
 8. `predict.py` - A Python script used to give a prediction on a single example (database entry).
-9. `EDA.ipynb` - A Jupyter Notebook that contains all the Exploratory Data Analysis.
+9. `EDA.ipynb` - A Jupyter Notebook that contains all the Exploratory Data Analysis and Model Selection (with plots).
 
 ## Usage:
 1. Install Python (version>=3.8.0)
