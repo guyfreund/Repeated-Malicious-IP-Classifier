@@ -9,15 +9,19 @@ from itertools import zip_longest
 
 class Preprocessor:
     def __init__(self, path_to_json, save_pickles=False, add_label=True):
+        self.log('init start')
         self.save_pickles = save_pickles
         if self.save_pickles and not os.path.isdir(PICKLES_DIR):
             os.mkdir(PICKLES_DIR)
         self.add_label = add_label
+        self.log('loading json start')
         if os.path.exists(path_to_json):
             with open(path_to_json, 'r') as f:
                 self.sessions_json = json.load(f)
+            self.log('loading json end')
         else:
             raise Exception(f'{path_to_json} does not exist, could not initialize Preprocessor.')
+        self.log('init end')
 
 
     def normalize_in_chunks(self) -> pd.DataFrame:
