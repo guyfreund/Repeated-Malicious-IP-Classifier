@@ -24,7 +24,7 @@ and label the data such that each ip address that attacks more than once, gets a
 8. `predict.py` - A Python script used to give a prediction on a single example (database entry).
 9. `EDA.ipynb` - A Jupyter Notebook that contains all the Exploratory Data Analysis and Model Selection (with plots).
 
-## Usage:
+## Usage
 1. Install Python (version>=3.8.0)
 2. Run: `pip install -r requirements.txt` or `pipenv shell`
 3. For training run: `python3 train.py -p <path_to_json>` (add -sm, -sd if you want to change the defaults, see train.py for more information)
