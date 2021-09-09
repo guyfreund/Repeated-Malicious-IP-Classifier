@@ -13,9 +13,19 @@ The structure of the data we use is a json, where each entry in it is part of a 
 We aggregate each attack session into a single entry, preprocess it using the preprocessor,
 and label the data such that each ip address that attacks more than once, gets a label of 1, or 0 otherwise.
 
+## Files
+1. `Pipfile` & `Pipfile.lock` - Virtual environment, optional.
+2. `requirements.txt` - The requirements file.
+3. `constans.py` - Shared constants file.
+4. `utils.py` - Shared functions file.
+5. `finalized_model.joblib` - The weights of the final model (after training).
+6. `preprocessor.py` - A class that represents a Preprocessor object (used for processing raw data).
+7. `train.py` - A Python script used to train the model from scracth (raw data to final model).
+8. `predict.py` - A Python script used to give a prediction on a single example (database entry).
+9. `EDA.ipynb` - A Jupyter Notebook that contains all the Exploratory Data Analysis.
+
 ## Usage:
 1. Install Python (version>=3.8.0)
-2. Run: `pip install -r requirements.txt`
-3. for training run: train.py -p <path_to_json> (add -sm, -sd if you want to change the defaults, see train.py for more information)
-   for prediction using existing model run: predict.py -p <path_to_json> (add -sd true if you want to save the processed data)
-
+2. Run: `pip install -r requirements.txt` or `pipenv shell`
+3. For training run: `python3 train.py -p <path_to_json>` (add -sm, -sd if you want to change the defaults, see train.py for more information)
+4. For prediction using existing model run: `python3 predict.py -p <path_to_json>` (add -sd true if you want to save the processed data)
