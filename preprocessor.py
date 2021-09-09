@@ -41,8 +41,6 @@ class Preprocessor:
             if col in df.columns:
                 del df[col]
 
-        #     sessions_flatten.loc["data.message"] = sessions_flatten["data.message"].to_string() ?????????????
-
         # timing has no meaning, therefore using hot-encoding
         df.loc[df["data.src_uptime_sec"].notna(), "data.src_uptime_sec"] = 1
         df.loc[df["data.src_uptime_sec"].isna(), "data.src_uptime_sec"] = 0
