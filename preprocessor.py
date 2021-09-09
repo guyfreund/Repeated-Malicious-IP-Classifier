@@ -27,6 +27,7 @@ class Preprocessor:
             args = [iter(iterable)] * n
             return zip_longest(*args, fillvalue=fillvalue)
 
+        self.log('normalize_in_chunks start')
         dfs = []
         chunk_size = 10000
         i = 1
@@ -41,6 +42,7 @@ class Preprocessor:
             dfs.append(df)
 
         final_df = pd.concat(dfs)
+        self.log('normalize_in_chunks end')
         return final_df
 
 
@@ -102,6 +104,7 @@ class Preprocessor:
     def aggregate_session_data(self, df) -> pd.DataFrame:
         """ Aggregates the raw data into a sample per session """
 
+        self.log('aggregate_session_data start')
         unique_session_ids = df["data.session"].unique()
         self.log(msg=f'number of unique session ids: {len(unique_session_ids)}')
 
@@ -146,11 +149,13 @@ class Preprocessor:
             sessions_df.to_pickle(f"{PICKLES_DIR}/processed_data.pkl")
             self.log(msg="pickled processed_data")
 
+        self.log('aggregate_session_data end')
         return sessions_df
 
     def add_label_column(self, df) -> None:
         """ Adding the label - 0 if ip doesn't return in the data, else 1. """
 
+        self.log('add_label_column start')
         df["label"] = 0
         unique_ips = df["ip"].unique()
         self.log(msg=f"number of unique ips: {len(unique_ips)}")
@@ -165,16 +170,19 @@ class Preprocessor:
             if len(sessions) != 1:  # IP is repeated in different sessions
                 df.loc[df.ip == ip, "label"] = 1
 
+        self.log('add_label_column end')
+
     def factorize_df(self, df, categorical_cols) -> pd.DataFrame:
         """ Transforms non-numeric values into dummy values """
 
+        self.log('factorize_df start')
         new_df = pd.DataFrame(columns=df.columns)
         for col in categorical_cols:
             new_df[col], _ = df[col].factorize()
         not_categorical_cols = [col for col in df.columns if col not in categorical_cols]
         for col in not_categorical_cols:
             new_df[col] = df[col]
-        self.log("done factorizing df")
+        self.log('factorize_df end')
         return new_df
 
     @staticmethod
