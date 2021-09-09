@@ -88,18 +88,22 @@ def log(msg):
     print(f'{str(datetime.now())} Train: {msg}')
 
 
-def main():
-    args = args_handler()
-    path_to_json = args.path_to_json
-    save_model = args.save_model
-    save_data = args.save_data
-
+def run_trainer(path_to_json, save_model, save_data):
     preprocessor = Preprocessor(path_to_json=path_to_json, save_pickles=save_data)
     processed_data = preprocessor.process()
 
     X_train, X_test, y_train, y_test = get_train_test_data(processed_data, save_data)
     model = train(X_train, y_train, save_model)
     evaluate_model(model, X_test, y_test)
+
+
+def main():
+    args = args_handler()
+    path_to_json = args.path_to_json
+    save_model = args.save_model
+    save_data = args.save_data
+
+    run_trainer(path_to_json, save_model, save_data)
 
 
 if __name__ == '__main__':
