@@ -4,6 +4,7 @@ import json
 import pandas as pd
 import os
 from datetime import datetime
+from itertools import zip_longest
 
 
 class Preprocessor:
@@ -18,11 +19,34 @@ class Preprocessor:
         else:
             raise Exception(f'{path_to_json} does not exist, could not initialize Preprocessor.')
 
+
+    def normalize_in_chunks(self) -> pd.DataFrame:
+        def grouper(iterable, n, fillvalue=None):
+            "Collect data into fixed-length chunks or blocks"
+            # grouper('ABCDEFG', 3, 'x') --> ABC DEF Gxx"
+            args = [iter(iterable)] * n
+            return zip_longest(*args, fillvalue=fillvalue)
+
+        dfs = []
+        chunk_size = 10000
+        i = 1
+
+        for json_chunk in grouper(self.sessions_json,chunk_size):
+            df = pd.json_normalize(json_chunk)
+            if self.save_pickles:
+                df.to_pickle(f"df_{i}.pkl")
+                i += 1
+            dfs.append(df)
+
+        final_df = pd.concat(dfs)
+        return final_df
+
+
     def process(self) -> pd.DataFrame:
         """ Preprocess the data - end to end """
 
         # flatten the json
-        df = pd.json_normalize(self.sessions_json)
+        df = self.normalize_in_chunks()
 
         # removing rows without session id
         df = df[df["data.session"].notna()]
