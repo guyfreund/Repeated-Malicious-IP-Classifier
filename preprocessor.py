@@ -132,7 +132,7 @@ class Preprocessor:
         # DataFrame creation
         for i, session_id in enumerate(unique_session_ids):
             # logging
-            if i % 100 == 0:
+            if i % 10000 == 0:
                 self.log(msg=f'{i}. Session ID {session_id}')
                 if self.save_pickles:
                     sessions_df.to_pickle(f"{PICKLES_DIR}/processed_data_{i}.pkl")
@@ -167,7 +167,7 @@ class Preprocessor:
         # label creation
         for i, ip in enumerate(unique_ips):
             # logging
-            if i % 100 == 0:
+            if i % 1000 == 0:
                 self.log(msg=f'{i}. IP {ip}')
 
             sessions = df[df["ip"] == ip]["data.session"].unique()  # all sessions with the same IP
