@@ -62,7 +62,7 @@ def get_train_test_data(processed_data, save_data):
 
 
 def train(X_train, y_train, save_model):
-    model = BalancedRandomForestClassifier()
+    model = BalancedRandomForestClassifier(random_state=4)
     model.fit(X_train, y_train)
 
     if save_model:
