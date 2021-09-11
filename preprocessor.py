@@ -39,7 +39,7 @@ class Preprocessor:
         for json_chunk in grouper(self.sessions_json, chunk_size):
             df = pd.json_normalize(json_chunk)
             if self.save_pickles:
-                filename = f"{PICKLES_DIR}/df_{i}.pkl"
+                filename = f"{PICKLES_DIR}/df_{i}_normalized.pkl"
                 self.log(f"pickeling file {filename}")
                 df.to_pickle(filename)
                 i += 1
