@@ -1,7 +1,7 @@
 # Repeated-Malicious-IP-Classifier
 
-![nucleon_logo](https://user-images.githubusercontent.com/45962209/132684129-7f859f56-2ddd-48ca-9381-4f5c7ffa9540.png)
-![reichman_logo](https://user-images.githubusercontent.com/45962209/132684855-f175a197-743e-4f04-991a-0e1b845bce76.png)
+<!--- ![nucleon_logo](https://user-images.githubusercontent.com/45962209/132684129-7f859f56-2ddd-48ca-9381-4f5c7ffa9540.png)
+![reichman_logo](https://user-images.githubusercontent.com/45962209/132684855-f175a197-743e-4f04-991a-0e1b845bce76.png) --->
 
 This repository is the implementation of a final project in Projects with the industry course taken by Guy Freund & Rotem Shalev from The department of Computer Science, Reichman University, Israel.<br>
 This project is jointly guided by the Reichman University and the [Nucleon Cyber company](https://nucleoncyber.com). <br>
