@@ -92,7 +92,7 @@ def run_trainer(path_to_json, save_model, save_data):
     preprocessor = Preprocessor(path_to_json=path_to_json, save_pickles=save_data)
     processed_data = preprocessor.process()
 
-    X_train, X_test, y_train, y_test = get_train_test_data(processed_data, save_data)
+    X_train, X_test, y_train, y_test = get_train_test_data(processed_data, save_model)
     model = train(X_train, y_train, save_model)
     evaluate_model(model, X_test, y_test)
 
